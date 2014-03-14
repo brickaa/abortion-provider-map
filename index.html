@@ -1,88 +1,107 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>test</title>
-
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
-
-    <style>
-      body { margin:0; padding:0; }
-      #map { position:absolute; top:0; bottom:0; width:75%; height:700px;}
-      .legend {
-        font-family: "HelveticaNeue-Light";
-        }
-      .popup {
-        font-family: "HelveticaNeue-Light";
-        }
-    </style>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Interactive Calculator Thing</title>
+  <link rel="stylesheet" href="//s3.amazonaws.com/static.texastribune.org/COMPRESSED/css/0dc3dbc17577.css">
+  <link rel="stylesheet" href="//s3.amazonaws.com/static.texastribune.org/common/fonts/fonts.css">
+  <link rel='stylesheet' href="//api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css">
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+  <link href='css/MarkerCluster.Default.css' rel='stylesheet' />  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<div>
+<body class="flatpage responsive">
 
- <div id='map'></div> 
+<div class="wrapper content-wrapper">
+<section id="site_content" class="content bare">
+    <div class="grid">
+        <header>
+          <h1>Interactive: Where Are Abortion Providers in Texas</h1>
+          <ul class="meta separator clearfix">
+            <li class="byline">by <a href="http://www.texastribune.org/about/staff/ryan-murphy/">Ryan Murphy</a> and <a href="http://www.texastribune.org/about/staff/becca-aaronson/">Becca Aaronson</a></li>
+            <li>March 15, 2014</li>
+          </ul>
+        </header>
+    </div>
 
-<div id='legend-content' style='display: none;'>
-  <div class='legend'>
-  Oh hey, I'm a legend.
-  </div>
+    <div class="grid">
+        <div class="cell w-12 prose">
+        <p>Abortion, abortion abortion.</p>
+        </div>
+    </div>
+
+    <div class="grid filters">
+        <div class="cell w-12">
+            <dl class="altered-select-item">
+                <dt style="text-align: center;">
+                    Show Your Nearest Abortion Providers <i class="icon-spinner icon-spin hidden" id="load-indicator"></i>
+                </dt>
+
+                <div class="geolocate" id="geolocate">
+                    <form class="geo-search">
+                        <div class="cell w-2 form-group">
+                            <button type="button" class="form-button form-button-blue find-me" id="find-me">Find me</button>
+                        </div>
+                        <div class="cell w-1 or-text">
+                            or
+                        </div>
+                        <div class="cell w-5 form-group">
+                            <input type="text" class="form-control" placeholder="Insert address OR ZIP Code">
+                        </div>
+                        <div class="cell w-2 form-group">
+                            <button type="submit" class="form-button form-button-slate search" id="search">Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="geolocate" id="reset-view">
+                    <div class="cell w-2 form-group">
+                            <button type="submit" class="form-button form-button-slate reset" id="reset-view">Reset</button>
+                    </div>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="cell w-7">
+            <div class="map" id="map"></div>
+        </div>
+        <div class="cell w-5">
+            <div class="feedback-container" id="feedback-container"></div>
+        </div>
+    </div>
+
+    <div class="grid">
+    <!-- <div class="flatpage-footer" id="flatpage-footer"> -->
+        Source: <a href="http://www.dshs.state.tx.us/">Texas Department of State Health Services</a> | <a href="http://www.texastribune.org/library/data/data-feedback/">Feedback</a>
+    </div>
+
+    <script type="text/template" id="feedback-template">
+
+    <div class="navigator-div-icon" style="width: 20px; height: 20px;"><%= index %></div>
+    <div><%= Name %></a></div>
+    <div><%= Address %><br><%= Rank %></div>
+
+
+    </script>
+</section>
 </div>
-<script type="text/javascript" src="OpenAbortionFacilities1.js"></script>
-<script>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-//Add the background map layer
-// L.mapbox.map(element, id|url|tilejson, options)
-var map = L.mapbox.map('map', 'texastribune.map-4xwafpgp', {
-    minZoom: 5,
-    maxZoom: 10,
-    zoomControl: true
-}).setView([31.35, -99.64], 6);
-// Set the latitude and longitude of the map's starting view, and zoom level
+<!-- mapping -->
+<script src="//api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+<script src="js/findnearestpoint.min.js"></script>
+<script src="js/Leaflet.MakiMarkers/Leaflet.MakiMarkers.js"></script>
 
-function onEachFeature(feature, layer) {
-  var popupContent = "<p>" + feature.properties.Name + "</p>";
+<!-- backbone -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.1.0/lodash.underscore.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 
-  if (feature.properties && feature.properties.popupContent) {
-    popupContent += feature.properties.popupContent;
-  }
+<!-- data -->
+<script src="data/abortion_data.js"></script>
 
-  layer.bindPopup(popupContent);
-}
-
-var myStyle = {
-  radius: 5,
-  color: "#fcc10f",
-  fillColor: "#fcc10f",
-  weight: 2,
-  opacity: 1,
-  fillOpacity: 0.5
-      // if (feature.properties["ASC"] = 0) {
-      //   return {fillColor: "#fcc10f"}
-      // } else {
-      //   return {fillColor: "#44abdf"}
-      // }
-};
-
-L.geoJson(geojson, {
-  pointToLayer: function(feature, properties) {
-    return L.circleMarker(properties, myStyle)
-  },
-  onEachFeature: onEachFeature
-
-  }).addTo(map);
-
-
-// Add your legend
-map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
-
-
-
-</script>
-
+<script src="js/script_edit.js"></script>
 </body>
 </html>

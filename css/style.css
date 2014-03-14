@@ -1,0 +1,342 @@
+.viz-container {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.grid {
+    width: 100%;
+    margin: 0;
+}
+
+.navigator-div-icon {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 30px;
+    line-height: 20px; /* matches the height provided by L.point -- change this if that changes */
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.navigator-div-icon-me {
+    background-color: rgb(62, 103, 176);
+    background-color: rgba(62, 103, 176, 0.8);
+}
+
+.navigator-div-cluster {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 40px;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-weight: italic;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.navigator-div-cluster-me {
+    background-color: rgb(225, 0, 0);
+    background-color: rgba(225, 0, 0, 0.8);
+}
+
+.navigator-div-icon-html {
+    font-weight: bold;
+    -webkit-animation: spin 1.5s infinite alternate;
+    -moz-animation: spin 1.5s infinite alternate;
+    -ms-animation: spin 1.5s infinite alternate;
+    -o-animation: spin 1.5s infinite alternate;
+    animation: spin 1.5s infinite alternate;
+}
+
+.search {
+    background-color: rgb(238, 238, 238);
+    padding: 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.form-control {
+    display: inline-block;
+    width: 100%;
+    height: 28px;
+    padding: 3px 6px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: rgb(34, 34, 34);
+    vertical-align: middle;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(146, 154, 163);
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control:focus {
+    border-color: rgb(255, 204, 32);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 204, 32, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 204, 32, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 204, 32, 0.6);
+}
+
+.form-button {
+    display: inline-block;
+    font-family: inherit;
+    padding: 3px 6px;
+    width: 95%;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-transform: none;
+    background-image: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.form-button-blue {
+    color: rgb(34, 34, 34);
+    background-color: rgb(68, 171, 223);
+    border-color: rgb(62, 103, 176);
+}
+
+.form-button-slate {
+    color: rgb(34, 34, 34);
+    background-color: rgb(207, 204, 199);
+    border-color: rgb(146, 154, 163);
+}
+
+.map {
+    height: 0;
+    padding: 50px 0 56.25% 0;
+}
+
+.filters {
+  background-color: rgb(238, 238, 238);
+  padding: 5px 8px;
+  margin: 0 0 5px 0;
+  border-radius: 4px;
+}
+
+.or-text {
+  line-height: 28px;
+  text-align: center;
+}
+
+.altered-select-item {
+  font-size: 1em;
+  float: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  width: 100%;
+}
+
+.altered-select-item dt {
+  padding-right: 0.5em;
+  color: #666666 !important;
+  margin-left: 0;
+  text-transform: none;
+  margin: 0 0 0.25em 0;
+}
+
+.option-select {
+  width: 100%;
+  font-size: 17px;
+  line-height: 145%;
+  color: rgb(34, 34, 34);
+  border: 1px solid rgb(204, 204, 204);
+  padding: 2px 4px;
+}
+
+.geo-search input:focus {
+  border-color: rgb(255, 204, 32);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 204, 32, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 204, 32, 0.6);
+}
+
+.feedback-container {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.table-striped {
+  position: relative;
+  width: 100%;
+  font-size: 13px;
+  margin-bottom: 1em;
+}
+
+.table-striped th,td {
+  padding: 0.5em 1em;
+}
+
+.table-striped thead th {
+  border-bottom: 1px solid #e6e6e6;
+  text-align: center;
+}
+
+.table-striped tbody tr:nth-child(odd) td {
+  background: #f9f9f9;
+}
+
+.table-striped tbody td {
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+  vertical-align: top;
+}
+
+.flatpage-footer {
+  font-size: 0.95em;
+  display: block;
+  margin: 10px 0 0 0;
+}
+
+.costs-container {
+    text-align: center;
+}
+
+.costs-container .age-rating-row {
+    font-family: "Knockout 49 A", "Knockout 49 B";
+    font-size: 30px;
+    padding: 0 0 5px 0;
+    border-bottom: 2px solid rgb(204, 204, 204);
+}
+
+.costs-container .qhp-row {
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.costs-container .qhp-row .qhp-row-header {
+    font-weight: bold;
+}
+
+.costs-container .qhp-row .qhp-row-value {
+    text-align: right;
+}
+
+.costs-container .gold-qhp .qhp-row-header {
+    border-right: 20px solid rgba(255, 215, 0, 0.7);
+}
+
+.costs-container .silver-qhp .qhp-row-header {
+    border-right: 20px solid rgba(192, 192, 192, 0.7);
+}
+
+.costs-container .bronze-qhp .qhp-row-header {
+    border-right: 20px solid rgba(165, 113, 100, 0.7);
+}
+
+.costs-container .cata-qhp .qhp-row-header {
+    border-right: 20px solid rgba(255, 102, 102, 0.7);
+}
+
+.sticky {
+  padding: 5px 0;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.race-view {
+  margin: 0 0 5px 0;
+}
+
+.race-view header {
+  font-family: "Knockout 49 A", "Knockout 49 B";
+  font-size: 15px;
+  border-bottom: 4px solid #AAAAAA;
+}
+
+.race-view .candidate-list {
+  font-size: 15px;
+  line-height: 1.45em;
+  padding: 0 0 3px 4px;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
+.hidden { display: none; }
+
+@media screen and (max-width: 799px) {
+    .table-striped {
+        font-size: 12px;
+    }
+
+    input[type="text"] {
+        margin-bottom: 5px;
+    }
+
+    .altered-select-item {
+      float: none;
+    }
+
+    .altered-select-item dt {
+      margin-top: 0.5em;
+    }
+
+    .costs-container .qhp-row .qhp-row-header {
+        padding: 0 0 2px 0;
+    }
+
+    .costs-container .qhp-row .qhp-row-value {
+        margin: 2px 0 0 0;
+        text-align: center;
+    }
+
+    .costs-container .gold-qhp .qhp-row-header {
+        border-right: 0;
+        border-bottom: 5px solid rgba(255, 215, 0, 0.7);
+    }
+
+    .costs-container .silver-qhp .qhp-row-header {
+        border-right: 0;
+        border-bottom: 5px solid rgba(192, 192, 192, 0.7);
+    }
+
+    .costs-container .bronze-qhp .qhp-row-header {
+        border-right: 0;
+        border-bottom: 5px solid rgba(165, 113, 100, 0.7);
+    }
+
+    .costs-container .cata-qhp .qhp-row-header {
+        border-right: 0;
+        border-bottom: 5px solid rgba(255, 102, 102, 0.7);
+    }
+
+    .grid .cell:last-of-type {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+  .table-striped {
+    font-size: 11px;
+  }
+}
